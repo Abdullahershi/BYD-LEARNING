@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn SQL</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body11">
+  <header class="header11">
+    <h1 class="title11">Learn SQL</h1>
+    <nav class="nav11">
+      <ul>
+        <li><a href="#basics" class="nav-link11">Basics</a></li>
+        <li><a href="#intermediate" class="nav-link11">Intermediate</a></li>
+        <li><a href="#advanced" class="nav-link11">Advanced</a></li>
+        <li><a href="#projects" class="nav-link11">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main11">
+    <!-- SQL Basics Section -->
+    <section id="basics" class="section11">
+      <h2 class="section-title11">SQL Basics</h2>
+      <p class="paragraph11">
+        SQL (Structured Query Language) is used for managing and manipulating relational databases. Common operations include querying, updating, and maintaining data in relational databases like MySQL, PostgreSQL, and SQLite.
+      </p>
+      <h3 class="subheading11">Basic Syntax</h3>
+      <p class="paragraph11">
+        Example of a simple SQL query to fetch customers with age greater than 25:
+      </p>
+      <pre class="code11">
+SELECT name 
+FROM customers 
+WHERE age > 25;
+      </pre>
+    </section>
+
+    <!-- Intermediate SQL Section -->
+    <section id="intermediate" class="section11">
+      <h2 class="section-title11">Intermediate SQL</h2>
+      <p class="paragraph11">
+        Intermediate SQL introduces JOINs, subqueries, and grouping data using aggregate functions like COUNT, AVG, and SUM. These concepts are essential for analyzing and combining complex datasets.
+      </p>
+      <h3 class="subheading11">JOIN Example</h3>
+      <pre class="code11">
+SELECT orders.id, customers.name 
+FROM orders 
+INNER JOIN customers 
+ON orders.customer_id = customers.id;
+      </pre>
+    </section>
+
+    <!-- Advanced SQL Section -->
+    <section id="advanced" class="section11">
+      <h2 class="section-title11">Advanced SQL</h2>
+      <p class="paragraph11">
+        Advanced SQL topics include stored procedures, triggers, transactions, and advanced query techniques like window functions and CTEs. These are vital for building robust database systems.
+      </p>
+      <h3 class="subheading11">Window Function Example</h3>
+      <pre class="code11">
+SELECT name, salary, 
+RANK() OVER (ORDER BY salary DESC) AS rank 
+FROM employees;
+      </pre>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section11">
+      <h2 class="section-title11">SQL Projects</h2>
+      <p class="paragraph11">
+        Apply your SQL skills with these projects:
+      </p>
+      <ul class="list11">
+        <li>Library Management System: Use joins, constraints, and triggers.</li>
+        <li>Sales Dataset Analysis: Aggregate data and optimize queries.</li>
+        <li>E-commerce Database: Design tables for orders, products, and customers.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <ul class="footer__nav">
+      <li class="footer__item">
+        <a class="footer__link" href="./about.html">About</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="index.html">Home</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Terms of Use</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Privacy Policy</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Resources</a>
+      </li>
+      
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Contact Us</a>
+      </li>
+    </ul>
+    <img src="img/BYD footer logo copy.png" alt="Logo" class="footer__logo" />
+    <p class="footer__copyright">
+      &copy; Copyright
+      <a
+        class="footer__link twitter-link"
+        target="_blank"
+        href="https://"
+        >Team BYD</a
+      > <br> 
+    </p>
+  </footer>
+</body>
+</html>

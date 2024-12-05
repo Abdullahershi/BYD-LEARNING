@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive SQL Guide for Beginners to Advanced Users">
+  <title>Learn SQL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="body12">
+  <!-- Header Section -->
+  <header class="header12">
+    <div class="container12">
+      <h1>Welcome to SQL Learning Guide</h1>
+      <p class="intro-text12">Master SQL from the basics to advanced concepts and build real-world database skills.</p>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav12">
+    <ul class="nav-menu12">
+      <li><a href="#introduction12">Introduction</a></li>
+      <li><a href="#crud12">CRUD Operations</a></li>
+      <li><a href="#joins12">Joins</a></li>
+      <li><a href="#views12">Views</a></li>
+      <li><a href="#advanced12">Advanced SQL</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main12">
+    <!-- Introduction Section -->
+    <section id="introduction12" class="section12">
+      <h2>Introduction to SQL</h2>
+      <p class="paragraph12">SQL (Structured Query Language) is the standard language for managing relational databases. With SQL, you can:</p>
+      <ul class="bullet-points12">
+        <li>Retrieve and manipulate data</li>
+        <li>Create and maintain database structures</li>
+        <li>Ensure data consistency and security</li>
+      </ul>
+      <div class="code-block12">
+        <code>
+-- Example: Fetching data from a table<br>
+SELECT name, age FROM employees WHERE age > 30;
+        </code>
+      </div>
+    </section>
+
+    <!-- CRUD Operations Section -->
+    <section id="crud12" class="section12">
+      <h2>CRUD Operations</h2>
+      <p class="paragraph12">CRUD stands for Create, Read, Update, and Delete, the fundamental operations of a database:</p>
+      <table class="table12">
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>SQL Statement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Create</td>
+            <td>INSERT INTO table_name (columns) VALUES (values);</td>
+          </tr>
+          <tr>
+            <td>Read</td>
+            <td>SELECT columns FROM table_name WHERE condition;</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>UPDATE table_name SET column=value WHERE condition;</td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>DELETE FROM table_name WHERE condition;</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="code-block12">
+        <code>
+-- Example: Updating a record<br>
+UPDATE employees SET age = 35 WHERE name = 'John Doe';
+        </code>
+      </div>
+    </section>
+
+    <!-- Joins Section -->
+    <section id="joins12" class="section12">
+      <h2>Joins</h2>
+      <p class="paragraph12">Joins allow combining data from multiple tables based on relationships. Common types of joins include:</p>
+      <ul class="bullet-points12">
+        <li><strong>Inner Join:</strong> Returns matching rows from both tables.</li>
+        <li><strong>Left Join:</strong> Returns all rows from the left table and matching rows from the right.</li>
+        <li><strong>Full Join:</strong> Combines all rows from both tables.</li>
+      </ul>
+      <div class="code-block12">
+        <code>
+-- Example: Inner Join<br>
+SELECT orders.id, customers.name<br>
+FROM orders<br>
+INNER JOIN customers ON orders.customer_id = customers.id;
+        </code>
+      </div>
+    </section>
+
+    <!-- Views Section -->
+    <section id="views12" class="section12">
+      <h2>Views</h2>
+      <p class="paragraph12">Views simplify complex queries and provide a virtual table based on the result set of a SQL query.</p>
+      <div class="code-block12">
+        <code>
+-- Example: Creating a view<br>
+CREATE VIEW high_earners AS<br>
+SELECT name, salary FROM employees WHERE salary > 100000;
+        </code>
+      </div>
+    </section>
+
+    <!-- Advanced SQL Section -->
+    <section id="advanced12" class="section12">
+      <h2>Advanced SQL Concepts</h2>
+      <p class="paragraph12">Advanced techniques include stored procedures, triggers, and performance tuning:</p>
+      <ul class="bullet-points12">
+        <li><strong>Stored Procedures:</strong> Predefined SQL queries for repeated use.</li>
+        <li><strong>Triggers:</strong> Automatic actions triggered by database events.</li>
+        <li><strong>Indexing:</strong> Enhances data retrieval speed.</li>
+      </ul>
+      <div class="code-block12">
+        <code>
+-- Example: Creating a trigger<br>
+CREATE TRIGGER after_insert_employee<br>
+AFTER INSERT ON employees<br>
+FOR EACH ROW<br>
+BEGIN<br>
+  INSERT INTO logs (message) VALUES ('New employee added');<br>
+END;
+        </code>
+      </div>
+    </section>
+  </main>
+<!-- Playlist Section -->
+<section class="playlist1-section">
+    <h2>Comprehensive SQL Playlist</h2>
+    <p>Explore this curated SQL playlist to learn step-by-step with in-depth tutorials:</p>
+    <div class="playlist1-container">
+      <!-- Video 1 -->
+      <div class="video1-card">
+        <iframe 
+          src="https://www.youtube.com/embed/1aybOgni7lI" 
+          title="SQL Tutorial Video 1" 
+          frameborder="0" 
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+        <p>Introduction to SQL</p>
+      </div>
+      <!-- Video 2 -->
+      <div class="video1-card">
+        <iframe 
+          src="https://www.youtube.com/embed/0OQJDd3QqQM" 
+          title="SQL Tutorial Video 2" 
+          frameborder="0" 
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+        <p>SQL Query Basics</p>
+      </div>
+      <!-- Video 3 -->
+      <div class="video1-card">
+        <iframe 
+          src="https://www.youtube.com/embed/RehbnzKHS28" 
+          title="SQL Tutorial Video 3" 
+          frameborder="0" 
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+        <p>Joins and Relationships</p>
+      </div>
+      <!-- Video 4 -->
+      <div class="video1-card">
+        <iframe 
+          src="https://www.youtube.com/embed/QNfnuK-1YYY" 
+          title="SQL Tutorial Video 4" 
+          frameborder="0" 
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+        <p>Aggregate Functions</p>
+      </div>
+   
+      <!-- Video 6 -->
+      <div class="video1-card">
+        <iframe 
+          src="https://www.youtube.com/embed/ZML_EJrBhnY" 
+          title="SQL Tutorial Video 6" 
+          frameborder="0" 
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+        <p>Database Optimization</p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+    
+  
+      <!-- Footer Section -->
+      <footer class="footer">
+        <ul class="footer__nav">
+          <li class="footer__item">
+            <a class="footer__link" href="./about.html">About</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="index.html">Home</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Terms of Use</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Privacy Policy</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Resources</a>
+          </li>
+          
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Contact Us</a>
+          </li>
+        </ul>
+        <img src="img/BYD footer logo copy.png" alt="Logo" class="footer__logo" />
+        <p class="footer__copyright">
+          &copy; Copyright
+          <a
+            class="footer__link twitter-link"
+            target="_blank"
+            href="https://"
+            >Team BYD</a
+          > <br> 
+        </p>
+      </footer>
+    </div>
+  
+</body>
+</html>
+
