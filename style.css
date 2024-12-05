@@ -1,0 +1,561 @@
+/* quiz mp*/
+
+.quizmpbody {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:linear-gradient(180deg,#9A16FF, #00aeef);
+  }
+  
+  .quizcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .welcome {
+    font-size: 250px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    top: -110px;
+    color: #2d388a;
+    border-radius: 15px;
+    padding: 20px;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 9px;
+  }
+  
+  .arena {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    top: -220px;
+    color: #2d388a;
+    left: 12px;
+    border-radius: 15px;
+    padding: 15px;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 3px;
+  }
+  
+  .read{
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d388a; /* Text color */
+    width: 500px; /* Specify the width */
+    text-align:center;
+    top: -240px;
+    position: relative;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+  }
+  
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -120px;
+  }
+  
+  .left-buttons,
+  .right-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: -200px; /* Add margin to push buttons downward */
+  }
+  
+  .button {
+   background:  rgba(255, 255, 255, 0.142); 
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px 15px;
+    border: 3px solid #1452aa;
+    border-radius: 10px;
+    margin: 9px; /* Adjust this value to control vertical spacing */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .go-back-button {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.142); /* Microsoft Encarta Kids blue */
+    color: white;
+    border: 3px solid #1452aa;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    /* Positioning */
+    position: absolute;
+    top: -260px; /* Adjust these values to position the button as desired */
+    left: -710px;
+  }
+  
+  .go-home-button {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.142); /* Microsoft Encarta Kids blue */
+    color: white;
+    border: 3px solid #1452aa;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    /* Positioning */
+    position: absolute;
+    top: -260px; /* Adjust these values to position the button as desired */
+    left: -850px;
+  }
+  
+  .go-back-container {
+    position: relative;
+    top: 100px; /* Adjust these values to position the button as desired */
+    left: 100px;
+  }
+  
+  .skewed-left {
+    transform: skew(15deg);
+    margin-right: 300px; /* Adjust this value to push the buttons back */
+  }
+  
+  .skewed-right {
+    transform: skew(-15deg);
+    margin-left: 300px; /* Adjust this value to push the buttons back */
+  }
+  
+  .button:hover {
+    background: #121a20c2;
+  }
+  
+  
+  
+  /* quiz mp end */
+
+  /* quiz topic start */
+  .quiztopicbody {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .quiz-container {
+    background: linear-gradient(180deg,#2d388a, #00aeef);
+    border-radius: 8px;
+    padding: 20px;
+    padding-bottom: 60px; /* Increased padding at the bottom for the "Next" button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 500px; /* Increased height of the container */
+    margin: 0 auto; /* Center horizontally */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Move to the middle */
+    border: 3px solid #1452aa;
+  }
+  
+  /* Move the elements inside the container upwards */
+  .quiz {
+    position: relative; /* Reset the position to relative */
+    /* Additional styles as needed */
+  }
+  
+  h1.quiz-page {
+    font-size: 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifs;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, transparent, #0d3e83, transparent);
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+  }
+  
+  #intro-container {
+    text-align: center;
+    background: linear-gradient(180deg,#2d388a, #00aeef);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 690px;
+    margin:  auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: #fff;
+    line-height: 40px;
+  }
+  
+  #start-quiz-btn {
+    background-color: rgba(255, 255, 255, 0.299);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 20px;
+    border: 2px solid #1452aa;
+    top: 50%;
+    left: 50%;
+    transform: translate(12%, 0%);
+  }
+  
+  #x-btn {
+    color: rgba(255, 255, 255, 0.627);
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 35px;
+    position: relative;
+    top: -450px;
+    left: 250px;
+    background: transparent;
+  }
+  
+  #x-btn2 {
+    color: rgba(255, 255, 255, 0.627);
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 35px;
+    position: fixed;
+    top: -3px;
+    left: 490px;
+    background: transparent;
+  }
+  
+  #start-quiz-btn:hover {
+    background-color: #121a2041;
+  }
+  
+  
+  .test-description {
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .question-text {
+    font-size: 21px;
+    color: hsl(0, 0%, 100%);
+    text-align: center;
+  }
+  
+  .choice-btn {
+    font-size: 16px;
+    padding: 15px 25px;
+    width: 100%;
+    margin: 15px auto;
+    border: 2px solid #1452aa;
+    border-radius: 4px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.299);
+    color: #ffffff;
+    transition: background-color 0.3s;
+    display: block;
+    text-align: left;
+    outline: none;
+  }
+  
+  .choice-btn:hover {
+    background-color: #121a2041;
+  
+  }
+  
+  .choice-btn.selected {
+    background-color: #1452aa;
+    color: #fff;
+  }
+  
+  .next-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #1452aa;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #1452aa;
+    color: #fff;
+    transition: background-color 0.3s;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    outline: none;
+  }
+  
+  .finish-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #1452aa;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #1452aa;
+    color: #fff;
+    transition: background-color 0.3s;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    outline: none;
+  }
+  
+  #result-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .slide {
+    display: none;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .menu-button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #1452aa;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #1452aa;
+    color: #fff;
+    transition: background-color 0.3s;
+    text-align: center;
+    position: relative;
+       bottom: -100px;
+       right: -250px;
+    outline: none;
+  }
+  
+  .again-button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #1452aa;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #1452aa;
+    color: #fff;
+    transition: background-color 0.3s;
+    text-align: center;
+    position: relative;
+       bottom: -57px;
+       right: 130px;
+    outline: none;
+  }
+  
+  .question-number-container {
+    position: absolute;
+    bottom: 20px; /* Adjust the position as needed */
+    right: 350px; /* Adjust the position as needed */
+    color: #1452aa;
+    padding: 10px 20px;
+    border-radius: 4px;
+    width: 150px;
+    text-align: center;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 0.5px;
+  }
+  
+  .question-number {
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .battery {
+    width: 250px;
+    border: 2px solid #000;
+    border-radius: 9px;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    position: fixed;
+    top: 60%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+  }
+  
+  .battery-level {
+    height: 100%;
+    background-color: #1452aa;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: bold;
+    color: #fffefe;
+  }
+  /* quiz topic end */
+
+  /* course start */
+  /* Reset some default browser styles */
+.coursebody, .courseh2, p {
+    margin: 0;
+    padding: 0;
+}
+
+.courseh1{
+    font-size: 60px;
+}
+
+/* Define global styles */
+.coursebody {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg,#ffffff, cornflowerblue);
+    line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+  }
+  
+  /* Customize the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background: cornflowerblue; /* Change the background color of the scrollbar thumb */
+    border-radius: 5px; /* Add rounded corners to the scrollbar thumb */
+  }
+  
+  /* Customize the scrollbar track on hover */
+ ::-webkit-scrollbar-thumb:hover {
+    background: #0056b3; /* Change the background color on hover */
+  }
+
+header {
+    background-color: #22282a;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    background-color: #22282a;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.coursecontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detail {
+    font-size: 30px;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+section img {
+    width: 35%;
+    object-fit: cover;
+    height: auto;
+}
+
+section .content {
+    width: 65%;
+    padding: 20px;
+}
+
+section h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+    background-color: #22282a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+/* Hide sections by default */
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Show sections when scrolled into view */
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+/* Set the initial state of all sections to full height */
+section {
+    min-height: 100vh;
+}
+
+/* Additional styling for section titles */
+section h2 {
+    background-color: #22282a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Padding for content inside the sections */
+section .content {
+    padding: 20px;
+}
+
+/* Add new CSS styles for sticky sections */
+section.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+
+
+
+  /* course end */

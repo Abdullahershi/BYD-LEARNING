@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="quiztopicbody">
+    <div class="intro-container" id="intro-container">
+        <h1>Welcome to Bio Tech Quiz</h1><hr>
+        <h2>Quiz Rules:</h2>
+            <span>You will be presented with 10 multiple-choice questions.</span><br>
+            <span>Choose the correct answer by clicking on the<br> corresponding button.</span><br>
+            <span>Click "Next" to move to the next question.</span><br>
+            <span>Click "Finish" to see your results.</span><br>
+        <button id="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
+        <button id="x-btn" onclick="goToPage1()">&#10005;</button>
+    </div>
+    <div class="quiz-container hidden" id="quiz-container">
+        <h1 class="quiz-page">Multiple Choice Quiz</h1>
+        <div id="quiz">
+            <div id="question-container">
+                <p class="test-description">BIO TECH QUIZ</p>
+            </div>
+            <hr>
+            <p class="question-text" id="question-text"></p>
+            <div id="choices-container">
+                <button class="choice-btn" onclick="selectAnswer(0)"></button>
+                <button class="choice-btn" onclick="selectAnswer(1)"></button>
+                <button class="choice-btn" onclick="selectAnswer(2)"></button>
+                <button class="choice-btn" onclick="selectAnswer(3)"></button>
+                <button id="x-btn2" onclick="goToPage1()">&#10005;</button>
+            </div>
+            <div id="result-container" class="hidden">
+                <p id="result-text"></p>
+            </div>
+            <div class="question-number-container">
+                <p class="question-number" id="question-number">1 of 10 Questions</p>
+              </div>
+        </div>
+        <!-- Place the "Next" button inside the container -->
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+        <button class="finish-btn" id="finish-btn" onclick="finishQuiz()" style="display: none;">Finish</button>
+    </div>
+    <div class="quiz-container hidden" id="results-container">
+      <h1 class="quiz-page">Results</h1>
+      <div id="results-slide">
+          <h2 style="color: rgb(255, 255, 255);">Quiz Results</h2>
+          <div id="score-results"></div>
+          <div class="battery">
+            <div class="battery-level" id="battery-level"></div>
+            <div class="percentage" id="percentage">0%</div>
+            <button class="menu-button" id="menu-button" onclick="goToPage1()">Main Menu</button>
+            <button class="again-button" id="again-button" onclick="goToPage2()">Try Again</button>
+        </div>
+    <script defer src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="quizmpbody">
+    <div class="quizcontainer">
+        <div class="welcome-container"></div>
+        <div class="welcome">Quiz</div>
+        <div class="arena"><span style="color: #2d388a;">&#8592;----</span> Arena <span style="color: #2d388a;">----&#8594;</span></div>
+        <div class="read">Choose the quiz of your choice: Test Your Knowledge and Shine Bright!</div>
+        <div class="button-container">
+            <div class="left-buttons">
+                <button class="button skewed-left" onclick="window.location.href = './ai.html' ">AI</button>
+                <button class="button skewed-left" onclick="window.location.href = './programming.html' ">PROGRAMMING</button>
+                <button class="button skewed-left" onclick="window.location.href = './biotech.html' ">BIO TECH</button>
+            </div>
+            <div class="right-buttons">
+                <button class="button skewed-right" onclick="window.location.href = './sql.html' ">SQL</button>
+                <button class="button skewed-right" onclick="window.location.href = './csci.html' ">COMPUTER SCI</button>
+                <button class="button skewed-right" onclick="window.location.href = './robotics.html' ">ROBOTICS</button>
+            </div>
+            <div class="go-back-container">
+                <button  class="button go-home-button" onclick="window.location.href = 'TBD-website-main/index.html'">HOME</button>
+                <div class="button go-back-button" onclick="goBack()">BACK</div>
+            <script>
+                function goBack() {
+                    window.history.back(); // Go back to the previous page
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
