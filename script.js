@@ -1,1317 +1,602 @@
 if (
-    window.location.pathname === './ai.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What is the primary goal of Artificial Intelligence (AI)?",
-        choices: ["A. Imitating human intelligence", "B. Replacing human intelligence", "C. Enhancing human intelligence", "D. Ignoring human intelligence"],
-        correct: 0,
-    },
-    // q2
-    {
-        question: "Which programming language is commonly used in AI development?",
-        choices: ["A. Python", "B. Java", "C. C++", "D. Ruby"],
-        correct: 0,
-    },
-    // q3
-    {
-        question: "What is a neural network in AI?",
-        choices: ["A. A network of interconnected human brains", "B. A computer-based system inspired by the human brain", "C. A network of electrical circuits", "D. A type of computer virus"],
-        correct: 1,
-    },
-    // q4
-    {
-        question: "Which AI technique allows a computer system to learn from data and improve over time?",
-        choices: ["A. Natural Language Processing (NLP)", "B. Machine Learning", "C. Expert Systems", "D. Robotics"],
-        correct: 1,
-    },
-    // q5
-    {
-        question: "What does the acronym 'NLP' stand for in the context of AI?",
-        choices: ["A. Natural Language Protocol", "B. Network Language Processing", "C. Neural Language Programming", "D. Natural Language Processing"],
-        correct: 3,
-    },
-    // q6
-    {
-        question: "Which AI application is designed to simulate human conversation?",
-        choices: ["A. Machine Learning", "B. Chatbot", "C.  Expert System", "D. Data Mining"],
-        correct: 1,
-    },
-    // q7
-    {
-        question: "What is the Turing Test in AI?",
-        choices: ["A. A test to measure the processing speed of AI algorithms", "B. A test to determine if a computer can exhibit human-like intelligence", "C. A test to evaluate the accuracy of AI predictions", "D. A test to assess the ethical implications of AI"],
-        correct: 1,
-    },
-    // q8
-    {
-        question: "What is the main purpose of reinforcement learning in AI?",
-        choices: ["A. To generate random data", "B. To optimize search algorithms", "C. To teach AI systems through rewards and punishments", "D. To identify patterns in data"],
-        correct: 2,
-    },
-    // q9
-    {
-        question: "What is the concept of 'Machine Vision' in AI?",
-        choices: ["A. A. The ability of machines to see and interpret visual information", "B. The power of machines to create visual art", "C. A programming language for AI development", "D. A type of virtual reality technology"],
-        correct: 0,
-    },
-    // q10
-    {
-        question: "What is the primary goal of Artificial Intelligence (AI)?",
-        choices: ["A. Natural Language Processing (NLP)", "B. Deep Learning", "C. Data Mining", "D. Genetic Algorithms"],
-        correct: 2,
-    },
-];
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/about.html' ||
+    window.location.pathname === '/games.html' ||
+    window.location.pathname === 'Login.html' ||
+  window.location.pathname === '/aimal.html' ||
+  window.location.pathname === '/tilan.html' ||
+  window.location.pathname === '/alhutheily.html'||
+  window.location.pathname === '/anthony.html' ||
+  window.location.pathname === '/darwin.html' ||
+  window.location.pathname === '/mia.html' ||
+  window.location.pathname === '/ahamd.html' ||
+  window.location.pathname === '/nihad.html'  ||
+  window.location.pathname === '/courses.html'  ||
+  window.location.pathname === '/tictac.html'  ||
+  window.location.pathname === '/ghost.html'
+) 
+{
+ 
 
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
+'use strict';
 
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
+///////////////////////////////////////
+//*---------------------- Elements
 
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
+// MODAL
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.btn--close-modal');
+const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+// BUTTON SCROLL
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+// TABS COMPONENT
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+// FADE OUT ANIMATION
+const nav = document.querySelector('.nav');
+// STICKY NAVIGATION
+const header = document.querySelector('.header');
 
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
+///////////////////////////////////////
+//*--------------------- Modal window
 
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
+const openModal = function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
 
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+// add event listener to each btn
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './quizmp.html';
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+// close the modal with escape
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
   }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './ai.html';
-  }
-
-startQuiz();
-}
-
-
-// programming
-if (
-    window.location.pathname === './programming.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What does HTML stand for in web development?",
-        choices: ["A. Hyper Text Markup Language", "B. High-Level Text Manipulation Language", "C. Hyperlink and Text Markup Language", "D. Hyper Transferable Text Mode Language"],
-        correct: 0,
-    },
-    // q2
-    {
-        question: "Which programming language is often used for building mobile applications on both Android and iOS platforms?",
-        choices: ["A. Python", "B. JavaScript", "C. Swift", "D. Ruby"],
-        correct: 2,
-    },
-    // q3
-    {
-        question: "What does the acronym 'CSS' stand for in web design?",
-        choices: ["A. Cascading Style Sheet", "B. Computer Style Sheet", "C. Creative Style Selector", "D. Content Style System"],
-        correct: 0,
-    },
-    // q4
-    {
-        question: "In object-oriented programming, what is an 'instance' of a class?",
-        choices: ["A. A class definition", "B. A subclass", "C. A concrete object created from the class", "D.  A method within a class"],
-        correct: 2,
-    },
-    // q5
-    {
-        question: "Which data structure follows the Last In, First Out (LIFO) principle?",
-        choices: ["A. Queue", "B. Stack", "C. Linked List", "D. Hash Table"],
-        correct: 1,
-    },
-    // q6
-    {
-        question: "What is the term for a function that calls itself within its own code?",
-        choices: ["A.  Loop", "B. Recursion", "C. Iteration", "D. Function chaining"],
-        correct: 1,
-    },
-    // q7
-    {
-        question: "Which programming paradigm emphasizes writing code as a series of mathematical functions without mutable state?",
-        choices: ["A. Object-Oriented Programming (OOP)", "B. Procedural Programming", "C. Functional Programming (FP)", "D. Event-Driven Programming"],
-        correct: 2,
-    },
-    // q8
-    {
-        question: "In Python, what is the purpose of the 'if-else' statement?",
-        choices: ["A. To declare a variable", "B. To define a class", "C. To implement conditional logic", "D. To create a loop"],
-        correct: 2,
-    },
-    // q9
-    {
-        question: "Which sorting algorithm has the worst-case time complexity of O(n^2)?",
-        choices: ["A. Quick Sort", "B. Merge Sort", "C. Bubble Sort", "D. Insertion Sort"],
-        correct: 2,
-    },
-    // q10
-    {
-        question: "What is the main purpose of version control systems like Git?",
-        choices: ["A. To write code documentation", "B. To track changes in code and collaborate with others", "C. To compile code into machine-readable format", "D. To optimize code for execution"],
-        correct: 1,
-    },
-];
-
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
-
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
-
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
-
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
-
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
-
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './index.html';
-  }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = 'google.com';
-  }
-
-startQuiz();
-}
-
-
-//BIO TECH
-if (
-    window.location.pathname === '/biotech.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What is biotechnology primarily focused on?",
-        choices: ["A. Electronics and Robotics", "B. Genetic Modification and Molecular Biology", "C. Space Exploration", "D. Environmental Conservation"],
-        correct: 1,
-    },
-    // q2
-    {
-        question: "Which of the following is a widely used biotechnological technique for amplifying DNA sequences?",
-        choices: ["A. Polymerase Chain Reaction (PCR)", "B. Nuclear Fusion", "C. Genetic Cloning", "D. RNA Interference"],
-        correct: 0,
-    },
-    // q3
-    {
-        question: "What does GMO stand for in the context of biotechnology?",
-        choices: ["A. Greenhouse Management Organization", "B. Genetically Modified Organism", "C. Global Medical Organization", "D. Genomic Molecular Order"],
-        correct: 1,
-    },
-    // q4
-    {
-        question: "Which biotechnological process involves the transfer of genes from one organism into another to impart specific traits?",
-        choices: ["A. Mutation", "B. Hybridization", "C. Gene Therapy", "D. Genetic Engineering"],
-        correct: 3,
-    },
-    // q5
-    {
-        question: "What is the primary goal of bioprocessing in biotechnology?",
-        choices: ["A. To extract minerals from soil", "B. To produce biofuels", "C. To manipulate genetic material", "D. To optimize biological product manufacturing"],
-        correct: 3,
-    },
-    // q6
-    {
-        question: "Which biotechnological application involves the study of an individual's unique DNA sequence?",
-        choices: ["A. Cloning", "B. Gene Therapy", "C. Genomics", "D. Genetic Screening"],
-        correct: 2,
-    },
-    // q7
-    {
-        question: "What is the role of CRISPR-Cas9 in biotechnology?",
-        choices: ["A. To repair broken DNA strands", "B. To edit specific genes in an organism's DNA", "C. To create artificial chromosomes", "D. To analyze protein structures"],
-        correct: 1,
-    },
-    // q8
-    {
-        question: "Which biotechnological technique is used to separate molecules based on their size and charge?",
-        choices: ["A. Electrophoresis", "B. Polymerase Chain Reaction (PCR)", "C. Chromatography", "D. Sequencing"],
-        correct: 0,
-    },
-    // q9
-    {
-        question: "What is a bioreactor in biotechnology?",
-        choices: ["A. A device for studying plant growth", "B. A container for storing genetically modified organisms", "C. A vessel for conducting biological reactions under controlled conditions", "D. A tool for analyzing protein structures"],
-        correct: 2,
-    },
-    // q10
-    {
-        question: "What is the primary goal of Artificial Intelligence (AI)?",
-        choices: ["A. Bioprocessing", "B. Biophysics", "C. Biomedicine", "D. Bioinformatics"],
-        correct: 2,
-    },
-];
-
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
-
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
-
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
-
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
-
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
-
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './index.html';
-  }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = 'google.com';
-  }
-
-startQuiz();
-}
-
-
-// SQL
-if (
-    window.location.pathname === '/sql.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What does SQL stand for?",
-        choices: ["A. Structured Query Language", "B. Simple Query Language", "C. Scripted Query Language", "D. Systematic Query Logic"],
-        correct: 0,
-    },
-    // q2
-    {
-        question: "Which SQL statement is used to retrieve data from a database?",
-        choices: ["A. GET", "B. SELECT", "C. FETCH", "D. SEARCH"],
-        correct: 1,
-    },
-    // q3
-    {
-        question: "Which SQL clause is used to filter records based on a specified condition?",
-        choices: ["A. GROUP BY", "B. HAVING", "C. ORDER BY", "D. WHERE"],
-        correct: 3,
-    },
-    // q4
-    {
-        question: "What does the SQL command 'UPDATE' do?",
-        choices: ["A. Deletes records from a table", "B. Inserts new records into a table", "C. Modifies existing records in a table", "D. Creates a new table"],
-        correct: 2,
-    },
-    // q5
-    {
-        question: "What SQL command is used to remove a table from a database?",
-        choices: ["A. REMOVE TABLE", "B. DROP TABLE", "C. DELETE TABLE", "D. ERASE TABLE"],
-        correct: 1,
-    },
-    // q6
-    {
-        question: "What does the SQL acronym 'DDL' stand for?",
-        choices: ["A. Data Definition Language", "B. Data Display Language", "C. Database Design Language", "D. Data Deletion Language"],
-        correct: 0,
-    },
-    // q7
-    {
-        question: "Which SQL function is used to find the maximum value in a column?",
-        choices: ["A. MAX()", "B. MIN()", "C. AVG()", "D. SUM()"],
-        correct: 0,
-    },
-    // q8
-    {
-        question: "In SQL, which JOIN type returns only the rows that have matching values in both tables?",
-        choices: ["INNER JOIN", "B. LEFT JOIN", "C. RIGHT JOIN", "D. FULL JOIN"],
-        correct: 0,
-    },
-    // q9
-    {
-        question: "What SQL command is used to add a new row to an existing table?",
-        choices: ["A. APPEND", "B. INSERT", "C. ADD", "D. MODIFY"],
-        correct: 1,
-    },
-    // q10
-    {
-        question: "What is the purpose of the SQL 'GROUP BY' clause?",
-        choices: ["A. To filter records based on a condition", "B. To sort records in ascending order", "C. To group rows with the same values into summary rows", "D. To delete duplicate records from a table"],
-        correct: 2,
-    },
-];
-
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
-
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
-
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
-
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
-
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
-
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './index.html';
-  }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = 'google.com';
-  }
-
-startQuiz();
-}
-
-
-// CSCI
-if (
-    window.location.pathname === '/csci.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What does CPU stand for in computer science?",
-        choices: ["A. Central Processing Unit", "B. Computer Power Unit", "C. Central Program Unit", "D. Computer Peripheral Unit"],
-        correct: 0,
-    },
-    // q2
-    {
-        question: "Which data structure is used to store data in a Last In, First Out (LIFO) manner?",
-        choices: ["A. Queue", "B. Stack", "C. Linked List", "D. Tree"],
-        correct: 1,
-    },
-    // q3
-    {
-        question: "What is the primary purpose of an operating system?",
-        choices: ["A. To store and manage data files", "B. To perform complex mathematical calculations", "C. To provide an interface for user interaction with hardware", "D. To design computer graphics"],
-        correct: 2,
-    },
-    // q4
-    {
-        question: "Which programming language is often used for developing mobile applications?",
-        choices: ["A. C++", "B. Java", "C. Python", "D. Ruby"],
-        correct: 1,
-    },
-    // q5
-    {
-        question: "In computer science, what is the term for a programming construct that repeats a set of instructions until a specific condition is met?",
-        choices: ["A. Conditionals", "B. Loops", "C. Functions", "D. Variables"],
-        correct: 1,
-    },
-    // q6
-    {
-        question: "Which of the following is not a type of network topology in computer networks?",
-        choices: ["A. Star", "B. Bus", "C. Mesh", "D. Cascade"],
-        correct: 3,
-    },
-    // q7
-    {
-        question: "What is the term for a malicious software program that self-replicates and spreads to other computers?",
-        choices: ["A. Firewall", "B. Virus", "C. Algorithm", "D. Router"],
-        correct: 1,
-    },
-    // q8
-    {
-        question: "Which sorting algorithm has an average time complexity of O(n log n)?",
-        choices: ["A. Bubble Sort", "B. Merge Sort", "C. Insertion Sort", "D. Quick Sort"],
-        correct: 1,
-    },
-    // q9
-    {
-        question: "In computer science, what does RAM stand for?",
-        choices: ["A. Read-Only Memory", "B. Random Access Memory", "C. Real-Time Application Module", "D. Remote Access Method"],
-        correct: 1,
-    },
-    // q10
-    {
-        question: "What is the purpose of a compiler in programming languages?",
-        choices: ["A. To execute code line by line", "B. To translate high-level code into machine code", "C. To debug programs", "D. To create graphics and animations"],
-        correct: 1,
-    },
-];
-
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
-
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
-
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
-
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
-
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
-
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './index.html';
-  }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = 'google.com';
-  }
-
-startQuiz();
-}
-
-
-//ROBOTICS
-if (
-    window.location.pathname === '/robotics.html')
-    {
-const quizData = [
-    // q1
-    {
-        question: "What does ROS stand for in the field of robotics?",
-        choices: ["A. Robotic Operating System", "B. Robot Operating Software", "C. Robotics Operating System", "D. Robotic System Operation"],
-        correct: 0,
-    },
-    // q2
-    {
-        question: "Which type of robot is designed to operate in environments too dangerous for humans, such as nuclear power plants?",
-        choices: ["A. Industrial Robot", "B. Humanoid Robot", "C. Autonomous Robot", "D. Remote-Controlled Robot"],
-        correct: 2,
-    },
-    // q3
-    {
-        question: "What is the term for a robot's ability to perceive and interpret its environment through sensors and cameras?",
-        choices: ["A. Artificial Intelligence", "B. Machine Learning", "C. Computer Vision", "D. Neural Network"],
-        correct: 2,
-    },
-    // q4
-    {
-        question: "Which programming language is commonly used for programming robots and robotic systems?",
-        choices: ["A. Python", "B. JavaScript", "C. Ruby", "D. MATLAB"],
-        correct: 3,
-    },
-    // q5
-    {
-        question: "What does 'AI' stand for in the context of robotics?",
-        choices: ["A. Automated Instruction", "B. Autonomous Intelligence", "C. Artificial Intelligence", "D. Algorithmic Insight"],
-        correct: 2,
-    },
-    // q6
-    {
-        question: "Which component of a robot allows it to move or manipulate objects in its environment?",
-        choices: ["A. Sensor Array", "B. Control Unit", "C. Actuator", "D. Processor"],
-        correct: 2,
-    },
-    // q7
-    {
-        question: "What type of robot is designed to mimic the physical appearance and capabilities of a human?",
-        choices: ["A. Industrial Robot", "B. Humanoid Robot", "C. Drone Robot", "D. Service Robot"],
-        correct: 1,
-    },
-    // q8
-    {
-        question: "Which field of robotics focuses on the development of robots for medical applications, such as surgery and rehabilitation?",
-        choices: ["A. Industrial Robotics", "B. Space Robotics", "C. Medical Robotics", "D. Educational Robotics"],
-        correct: 2,
-    },
-    // q9
-    {
-        question: "What is the primary function of a robotic arm in manufacturing and automation?",
-        choices: ["A. Visual Inspection", "B. Material Handling", "C. Speech Recognition", "D. Navigation"],
-        correct: 1,
-    },
-    // q10
-    {
-        question: "Which term describes the ability of robots to communicate and work together in a coordinated manner?",
-        choices: ["A. Robotic Synchronization", "B. Robotic Collaboration", "C. Robot Autonomy", "D. Robot Isolation"],
-        correct: 1,
-    },
-];
-
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const questionText = document.getElementById("question-text");
-const choicesContainer = document.getElementById("choices-container");
-const resultContainer = document.getElementById("result-container");
-const nextButton = document.getElementById("next-btn");
-const finishButton = document.getElementById("finish-btn");
-const quizContainer = document.getElementById("quiz-container");
-const questionNumber = document.getElementById("question-number"); 
-const introContainer = document.getElementById("intro-container");
-const startQuizBtn = document.getElementById("start-quiz-btn");
-
-function startQuiz() {
-    introContainer.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.add("hidden");
-
-    startQuizBtn.addEventListener("click", () => {
-        introContainer.classList.add("hidden");
-        quizContainer.classList.remove("hidden");
-        loadQuestion();
-    });
-}
-
-function loadQuestion() {
-    const currentQuizData = quizData[currentQuestion];
-    questionText.innerText = currentQuizData.question;
-    const questionNumber = document.getElementById("question-number");
-    questionNumber.innerText = ` ${currentQuestion + 1} of 10 Questions`;
-
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        choiceBtn.innerText = currentQuizData.choices[i];
-        choiceBtn.classList.remove("selected");
-    }
-
-    choicesContainer.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    nextButton.disabled = true;
-}
-
-function selectAnswer(choice) {
-    selectedAnswer = choice;
-    for (let i = 0; i < 4; i++) {
-        const choiceBtn = choicesContainer.children[i];
-        if (i === selectedAnswer) {
-            choiceBtn.classList.add("selected");
-        } else {
-            choiceBtn.classList.remove("selected");
-        }
-    }
-    nextButton.disabled = false;
-}
-
-function highlightOption(isCorrect) {
-    const choices = document.querySelectorAll(".choice-btn");
-
-    choices.forEach((choice, index) => {
-        if (index === selectedAnswer) {
-            if (isCorrect) {
-                choice.style.backgroundColor = "green"; // Correct answer turns green
-            } else {
-                choice.style.backgroundColor = "red"; // Wrong answer turns red
-            }
-        } else if (index === quizData[currentQuestion].correct) {
-            choice.style.backgroundColor = "green"; // Correct answer turns green
-        } else {
-            choice.style.backgroundColor = ""; // Reset other options
-        }
-    });
-
-    setTimeout(() => {
-        choices.forEach((choice) => {
-            choice.style.backgroundColor = ""; // Reset all options after 3 seconds
-        });
-
-        currentQuestion++;
-
-        if (currentQuestion < quizData.length) {
-            loadQuestion();
-        } else {
-            finishButton.style.display = "block"; // Show the "Finish" button
-            nextButton.style.display = "none"; // Hide the "Next" button
-        }
-    }, 1000); // 3 seconds timeout
-}
-
-function nextQuestion() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-
-        highlightOption(selectedAnswer === currentQuizData.correct);
-    }
-}
-
-function finishQuiz() {
-    if (selectedAnswer !== null) {
-        const currentQuizData = quizData[currentQuestion];
-        if (selectedAnswer === currentQuizData.correct) {
-            score++;
-        }
-        selectedAnswer = null;
-    }
-
-    currentQuestion++;
-
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-        nextButton.disabled = true;
-    } else {
-        document.getElementById("quiz-container").classList.add("hidden");
-        document.getElementById("results-container").classList.remove("hidden");
-
-        const scoreResults = document.getElementById("score-results");
-        scoreResults.innerHTML = `<h1 style="color: white;">Your final score is: ${score}/${quizData.length}<h1>`;
-
-        // Calculate and display the percentage
-        const percentage = (score / quizData.length) * 100;
-        document.getElementById("percentage").textContent = `${percentage.toFixed(0)}%`;
-        document.getElementById("battery-level").style.width = percentage + "%";
-    }
-}
-
-function goToPage1() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = './index.html';
-  }
-
-  function goToPage2() {
-    // Replace 'your-page-url.html' with the actual URL you want to navigate to
-    window.location.href = 'google.com';
-  }
-
-startQuiz();
-}
-
-
-
-// course start
-// JavaScript to handle scroll animations and page locking
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav ul li a");
-
-function checkScroll() {
-    const triggerBottom = window.innerHeight / 2;
-
-    sections.forEach((section, index) => {
-        const sectionTop = section.getBoundingClientRect().top;
-
-        if (sectionTop < triggerBottom) {
-            section.classList.add("active");
-            setActiveNavLink(index);
-            // Add the following lines to lock the section into place
-            section.style.position = "sticky";
-            section.style.top = "0";
-        } else {
-            section.classList.remove("active");
-            // Remove the position: sticky styles to unlock the section
-            section.style.position = "";
-            section.style.top = "";
-        }
-    });
-}
-
-function setActiveNavLink(index) {
-    navLinks.forEach((link, i) => {
-        if (i === index) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
-        }
-    });
-}
-
-// Initially, add a class to hide all sections
-sections.forEach((section) => {
-    section.classList.add("hide");
 });
 
-// Listen for scroll events and trigger animations
-window.addEventListener("scroll", checkScroll);
-window.addEventListener("resize", checkScroll);
-
-// Check for animations on page load
-window.addEventListener("DOMContentLoaded", checkScroll);
-
-// Scroll to the selected section when a navigation link is clicked
-navLinks.forEach((link, index) => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        sections[index].scrollIntoView({ behavior: "smooth" });
-    });
+//*-------------------------- button scrolling
+btnScrollTo.addEventListener('click', function (e) {
+  // work only in new browser
+  // we select the element we want to go to
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-// course end
+//*--------------------- link navigation
+
+// we use the delegation strategy
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+    ;
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+//*----------------- tab component
+
+tabsContainer.addEventListener('click', function (e) {
+  // Matching condition
+  const clicked = e.target.closest('.operations__tab');
+
+  // GARD clause
+  // avoid click out of the buttons so it will go out of the function
+  if (!clicked) return;
+
+  // remove the active class from all the tabs
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  // add the active class for the clicked tab
+  clicked.classList.add('operations__tab--active');
+
+  // hide the content from the all [remove the content]
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Show activate content
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+//*----------------------- Menu fade animation
+
+const handelHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+
+    const siblings = link.closest('nav').querySelectorAll('.nav__link');
+
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      // so we don't choose the hovered element
+      if (el !== link) el.style.opacity = this; // opacity
+    });
+    logo.style.opacity = this; //opacity
+  }
+};
+
+// nav.addEventListener('mouseover', function (e) {
+//   handelHover(e, 0.5);
+// });
+
+// nav.addEventListener('mouseout', function (e) {
+//   handelHover(e, 1);
+// });
+
+nav.addEventListener('mouseover', handelHover.bind(0.5));
+nav.addEventListener('mouseout', handelHover.bind(1));
+
+//*------------------- sticky navigation
+
+const navHeight = nav.getBoundingClientRect().height;
+const stickyNav = function (entires, observer) {
+  const [entry] = entires;
+  // the entry is a special kind of object that has the observer
+  // the number of entires depend on the number of thresholds
+
+  // logic
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  // null mean relate to the whole viewport
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+headerObserver.observe(header);
+
+
+const allSections = document.querySelectorAll('.section');
+const revealSection = function (entires, observer) {
+  const [entry] = entires;
+  // the entry.target is the element that has been observed
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  // stop observing
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+});
+
+//*-------------------------- lazy load images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImage = function (entires, observer) {
+  const [entry] = entires;
+
+  if (!entry.isIntersecting) return;
+
+  // replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function (e) {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  // stop observer
+  observer.unobserve(entry.target);
+};
+
+const imageObserver = new IntersectionObserver(loadImage, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach(img => imageObserver.observe(img));
+
+//*------------------ slider component
+
+const sliders = function () {
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  const maxSlide = slides.length;
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+
+  const createDots = function () {
+    slides.forEach((_, i) => {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    // remove the class from all the dots
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    // add the active class
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${(i - slide) * 100}%)`)
+    );
+  };
+
+  const nextSlide = function () {
+    if (currentSlide === maxSlide - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+
+  const previousSlide = function () {
+    if (currentSlide === 0) {
+      currentSlide = maxSlide - 1;
+    } else {
+      currentSlide--;
+    }
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+
+  const init = function () {
+    goToSlide(0);
+    createDots();
+    activateDot(0);
+  };
+  init();
+  // next slide
+  btnRight.addEventListener('click', nextSlide);
+
+  // previous slide
+  btnLeft.addEventListener('click', previousSlide);
+
+  //----- keyboard navigation
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') previousSlide();
+    e.key === 'ArrowRight' && nextSlide();
+  });
+
+  //-------- dots navigation
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const slide = e.target.dataset.slide;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+};
+sliders();
+
+//------------ mobile nav
+const navBtn = document.querySelector('.btn-mobile-nav');
+
+// navBtn.addEventListener('click', function () {
+//   nav.classList.toggle('nav--open');
+// });
+
+nav.addEventListener('click', function (e) {
+  // if (e.target === navBtn) return;
+  nav.classList.toggle('nav--open');
+});
+
+
+// CHATBOT
+const chatbotButton = document.getElementById("chatbotButton");
+const chatContainer = document.getElementById("chatContainer");
+const chatLog = document.getElementById("chatLog");
+const userInput = document.getElementById("userInput");
+const sendButton = document.getElementById("sendButton");
+
+let isChatOpen = false;
+
+chatbotButton.addEventListener("click", () => {
+  if (isChatOpen) {
+    chatContainer.style.width = "400px";
+    chatContainer.style.height = "400px";
+  } else {
+    chatContainer.style.width = "400px";
+    chatContainer.style.height = "400px";
+  }
+  chatContainer.style.display = isChatOpen ? "none" : "block";
+  isChatOpen = !isChatOpen;
+});
+
+// Add an event listener to detect when the chatbot container is active.
+chatContainer.addEventListener("click", () => {
+  chatContainer.classList.add("active");
+  document.body.style.overflow = "hidden"; // Disable scrolling on the body
+  chatLog.style.overflowY = "scroll"; // Enable scrolling for chat log
+});
+
+// Add an event listener to detect when the chatbot container is closed.
+document.addEventListener("click", (event) => {
+  if (!chatContainer.contains(event.target)) {
+    chatContainer.classList.remove("active");
+    document.body.style.overflow = "auto"; // Re-enable scrolling on the body
+    chatLog.style.overflowY = "hidden"; // Disable scrolling for chat log
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (isChatOpen && !chatContainer.contains(event.target) && !chatbotButton.contains(event.target)) {
+    chatContainer.style.display = "none";
+    isChatOpen = false;
+  }
+});
+
+sendButton.addEventListener("click", () => {
+  sendMessage();
+});
+
+userInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+});
+
+function sendMessage() {
+  const userMessage = userInput.value;
+  if (userMessage.trim() === "") return;
+
+  appendMessage(userMessage, "user");
+  respondToUser(userMessage);
+  userInput.value = "";
+}
+
+function appendMessageWithDelay(message, sender, delay) {
+  setTimeout(() => {
+    appendMessage(message, sender);
+  }, delay);
+}
+
+function appendMessage(message, sender) {
+  const messageElement = document.createElement("div");
+  messageElement.className = `chat-message ${sender}`;
+  messageElement.textContent = message;
+  chatLog.appendChild(messageElement);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function appendMessage(message, sender) {
+  const messageElement = document.createElement("div");
+  messageElement.className = `chat-message ${sender}`;
+  messageElement.textContent = message.replace(/\n/g, "<br>");
+  messageElement.innerHTML = message;
+  chatLog.appendChild(messageElement);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function respondToUser(userMessage) {
+  const lowercaseMessage = userMessage.toLowerCase();
+
+  if (lowercaseMessage === "hi" || lowercaseMessage === "hello" || lowercaseMessage === "howdy" || lowercaseMessage === "sup"
+  || lowercaseMessage === "yo" || lowercaseMessage === "how far" || lowercaseMessage === "hey" || lowercaseMessage === "good morning"
+  || lowercaseMessage === "good afternoon" || lowercaseMessage === "good afternoon") {
+    const responses = [
+      ["Hi there!", "I am Robby!", "I will guide you through our website","You can ask me a bunch of things!",
+      "• Perhaps you want to know what our website has to <span style='color: blue;'>offer</span>.",
+      "• Or you'd like to quickly <span style='color: blue;'>navigate</span> somewhere.",
+      "• Maybe you are daring enough to take a part in our <span style='color: blue;'>quizzes</span>."
+      ,"• Albeit you want to test your skills in one of our fine <span style='color: blue;'>games</span>.",
+      "• Type commands for a list of every <span style='color: blue;'>commands</span>."],
+      
+      ["Hello!", "My name is Robby.", "I will guide you through our website","You can ask me a bunch of things!",
+      "• Perhaps you want to know what our website has to <span style='color: blue;'>offer</span>.",
+      "• Or you'd like to quickly <span style='color: blue;'>navigate</span> somewhere.",
+      "• Maybe you are daring enough to take a part in our <span style='color: blue;'>quizzes</span>."
+      ,"• Albeit you want to test your skills in one of our fine <span style='color: blue;'>games</span>.",
+      "• Type commands for a list of every <span style='color: blue;'>commands</span>."]
+      // You can add more arrays with different response combinations
+    ];
+
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    const randomResponse = responses[randomIndex];
+
+    appendMessage(randomResponse[0], "bot");
+    setTimeout(() => {
+      appendMessage(randomResponse[1], "bot");
+    }, 500);
+    setTimeout(() => {
+      appendMessage(randomResponse[2], "bot");
+    }, 800);
+    setTimeout(() => {
+      appendMessage(randomResponse[3], "bot");
+    }, 1200);
+    setTimeout(() => {
+      appendMessage(randomResponse[4], "bot");
+    }, 1600);
+    setTimeout(() => {
+      appendMessage(randomResponse[5], "bot");
+    }, 2200);
+    setTimeout(() => {
+      appendMessage(randomResponse[6], "bot");
+    }, 2800);
+    setTimeout(() => {
+      appendMessage(randomResponse[7], "bot");
+    }, 3400);
+    setTimeout(() => {
+      appendMessage(randomResponse[8], "bot");
+    }, 4000);
+  
+    
+    
+  } else if (lowercaseMessage === "navigate") {
+    appendMessageWithDelay("Navigate where ?","bot");
+    appendMessageWithDelay("You can go to the following pages we have !","bot", 500);
+    appendMessageWithDelay("Either click or say the keywords to Go!","bot", 1000);
+    appendMessageWithDelay("<a href='./index.html'>Home</a> page","bot", 1500);
+    appendMessageWithDelay("<a href='./about.html'>About</a> page","bot",1500);
+    appendMessageWithDelay("Resource section","bot",1500);
+    appendMessageWithDelay("<a href='./game.html'>Games</a> arena","bot",1500);
+    appendMessageWithDelay("Quiz area","bot",1500);
+
+ 
+  } else if (lowercaseMessage.includes("home")) {
+    // Redirect to the website URL when the keyword is detected
+    window.location.href = "./index.html";
+
+  } else if (lowercaseMessage.includes("about")) {
+    window.location.href = "./about.html";
+
+  } else if (lowercaseMessage.includes("games")) {
+    window.location.href = "./game.html";
+
+  } else if (lowercaseMessage.includes("quiz")) {
+    window.location.href = "./quiz.html";
+
+// names
+  } else if (lowercaseMessage.includes("aimal")) {
+    window.location.href = "./aimal.html";  
+  
+  } else if (lowercaseMessage.includes("tilan")) {
+    window.location.href = "./tilan.html";  
+    
+  } else if (lowercaseMessage.includes("ahmad")) {
+    window.location.href = "./ahmad.html";
+
+  } else if (lowercaseMessage.includes("darwin")) {
+    window.location.href = "./darwin.html";
+
+  } else if (lowercaseMessage.includes("mia")) {
+    window.location.href = "./mia.html";
+
+  } else if (lowercaseMessage.includes("nihad")) {
+    window.location.href = "./nihad.html";
+
+  } else if (lowercaseMessage.includes("mohammed")) {
+    window.location.href = "./mohammed.html";
+
+  } else if (lowercaseMessage.includes("anthony")) {
+    window.location.href = "./anthony.html";
+
+// names end
+
+ } else if (lowercaseMessage === "commands") {
+    appendMessageWithDelay("You can type the Names of our members to go to their about page !","bot");
+    appendMessageWithDelay("• Aimal<br>• Tilan<br>• Ahmad<br>• Darwin<br>• Mia<br>• Nihad<br>• Mohammed<br>• Anthony","bot", 500);
+    
+  } else if (lowercaseMessage === "question2") {
+    appendMessage("Response 1 for question 2", "bot");
+    appendMessage("Let me provide you with some information.", "bot");
+  } else {
+    const defaultResponses = [
+      "I'm here to help!",
+      "That's an interesting question.",
+      "Tell me more.",
+      "Is there anything else you'd like to know?"
+    ];
+
+    const randomResponse = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+
+    appendMessage(randomResponse, "bot");
+  }
+
+
+  setTimeout(() => {
+    appendMessage(response, "bot");
+  }, 500);
+}
+
+
+}
+
+
+
+// quiz js
+
+const quizData = [
+  {
+      question: "What is the capital of France?",
+      choices: ["A. London", "B. Berlin", "C. Paris", "D. Madrid"],
+      correct: 2,
+  },
+  {
+      question: "Which planet is known as the Red Planet?",
+      choices: ["Mars", "Venus", "Earth", "Jupiter"],
+      correct: 0,
+  },
+  {
+      question: "What is 7 x 3?",
+      choices: ["21", "24", "18", "27"],
+      correct: 0,
+  },
+];
+
+let currentQuestion = 0;
+let score = 0;
+let selectedAnswer = null;
+
+const questionText = document.getElementById("question-text");
+const choicesContainer = document.getElementById("choices-container");
+const resultContainer = document.getElementById("result-container");
+const nextButton = document.getElementById("next-btn");
+
+function startQuiz() {
+    loadQuestion();
+}
+
+function loadQuestion() {
+    const currentQuizData = quizData[currentQuestion];
+    questionText.innerText = currentQuizData.question;
+
+    for (let i = 0; i < 4; i++) {
+        const choiceBtn = choicesContainer.children[i];
+        choiceBtn.innerText = currentQuizData.choices[i];
+        choiceBtn.classList.remove("selected");
+    }
+
+    choicesContainer.classList.remove("hidden");
+    resultContainer.classList.add("hidden");
+    nextButton.disabled = true;
+    nextButton.style.display = "block"; // Always display the "Next" button
+}
+
+function selectAnswer(choice) {
+    selected
+}
+
+// Smooth scrolling for navigation
+document.querySelectorAll('.nav-link11').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Add animation to table cells on hover
+document.querySelectorAll('.table11 td').forEach(cell => {
+  cell.addEventListener('mouseover', () => {
+    cell.style.transition = 'background-color 0.3s ease-in-out';
+    cell.style.backgroundColor = '#dcedc8';
+  });
+  cell.addEventListener('mouseout', () => {
+    cell.style.backgroundColor = '';
+  });
+});
