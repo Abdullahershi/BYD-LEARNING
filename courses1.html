@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive SQL Learning</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body11">
+  <header class="header11">
+    <h1 class="title11">Learn SQL</h1>
+    <nav class="nav11">
+      <ul>
+        <li><a href="#basics" class="nav-link11">Basics</a></li>
+        <li><a href="#intermediate" class="nav-link11">Intermediate</a></li>
+        <li><a href="#advanced" class="nav-link11">Advanced</a></li>
+        <li><a href="#projects" class="nav-link11">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main11">
+    <!-- SQL Basics Section -->
+    <section id="basics" class="section11">
+      <h2 class="section-title11 basics-color">SQL Basics</h2>
+      <hr class="divider11">
+      <p class="paragraph11">
+        SQL (Structured Query Language) is used for managing and manipulating relational databases. Common operations include querying, updating, and maintaining data in relational databases like MySQL, PostgreSQL, and SQLite.
+      </p>
+      <h3 class="subheading11">Basic Syntax</h3>
+      <table class="table11">
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>SQL Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fetch data</td>
+            <td><code>SELECT name FROM customers WHERE age > 25;</code></td>
+          </tr>
+          <tr>
+            <td>Insert data</td>
+            <td><code>INSERT INTO customers (name, age) VALUES ('John Doe', 30);</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Intermediate SQL Section -->
+    <section id="intermediate" class="section11">
+      <h2 class="section-title11 intermediate-color">Intermediate SQL</h2>
+      <hr class="divider11">
+      <p class="paragraph11">
+        Intermediate SQL introduces JOINs, subqueries, and grouping data using aggregate functions like COUNT, AVG, and SUM. These concepts are essential for analyzing and combining complex datasets.
+      </p>
+      <h3 class="subheading11">JOIN Example</h3>
+      <table class="table11">
+        <thead>
+          <tr>
+            <th>Join Type</th>
+            <th>SQL Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INNER JOIN</td>
+            <td>
+              <code>
+                SELECT orders.id, customers.name<br>
+                FROM orders<br>
+                INNER JOIN customers<br>
+                ON orders.customer_id = customers.id;
+              </code>
+            </td>
+          </tr>
+          <tr>
+            <td>LEFT JOIN</td>
+            <td>
+              <code>
+                SELECT customers.name, orders.amount<br>
+                FROM customers<br>
+                LEFT JOIN orders<br>
+                ON customers.id = orders.customer_id;
+              </code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Advanced SQL Section -->
+    <section id="advanced" class="section11">
+      <h2 class="section-title11 advanced-color">Advanced SQL</h2>
+      <hr class="divider11">
+      <p class="paragraph11">
+        Advanced SQL topics include stored procedures, triggers, transactions, and advanced query techniques like window functions and CTEs. These are vital for building robust database systems.
+      </p>
+      <h3 class="subheading11">Window Function Example</h3>
+      <code class="code11">
+        SELECT name, salary,<br>
+        RANK() OVER (ORDER BY salary DESC) AS rank<br>
+        FROM employees;
+      </code>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section11">
+      <h2 class="section-title11 projects-color">SQL Projects</h2>
+      <hr class="divider11">
+      <p class="paragraph11">Apply your SQL skills with these projects:</p>
+      <ul class="list11">
+        <li class="list-item11">Library Management System: Use joins, constraints, and triggers.</li>
+        <li class="list-item11">Sales Dataset Analysis: Aggregate data and optimize queries.</li>
+        <li class="list-item11">E-commerce Database: Design tables for orders, products, and customers.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer11">
+    <p class="footer-text11">© 2024 Learn SQL. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+
+<!-- Playlist Section -->
+<section class="playlist1-section">
+  <h2>Comprehensive SQL Playlist</h2>
+  <p>Explore this curated SQL playlist to learn step-by-step with in-depth tutorials:</p>
+  <div class="playlist1-container">
+    <!-- Video 1 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/1aybOgni7lI" 
+        title="SQL Tutorial Video 1" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>Introduction to SQL</p>
+    </div>
+    <!-- Video 2 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/0OQJDd3QqQM" 
+        title="SQL Tutorial Video 2" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>SQL Query Basics</p>
+    </div>
+    <!-- Video 3 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/RehbnzKHS28" 
+        title="SQL Tutorial Video 3" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>Joins and Relationships</p>
+    </div>
+    <!-- Video 4 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/QNfnuK-1YYY" 
+        title="SQL Tutorial Video 4" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>Aggregate Functions</p>
+    </div>
+    <!-- Video 5 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/Ww71knvhQ-s" 
+        title="SQL Tutorial Video 5" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>Subqueries</p>
+    </div>
+    <!-- Video 6 -->
+    <div class="video1-card">
+      <iframe 
+        src="https://www.youtube.com/embed/ZML_EJrBhnY" 
+        title="SQL Tutorial Video 6" 
+        frameborder="0" 
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+      <p>Database Optimization</p>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Subdivisions of SQL Section -->
+    <section class="subtopics1">
+      <h2>SQL Topics for Beginners</h2>
+      <div class="subtopics1-grid">
+        <div class="subtopic1-card">
+          <h3>Data Definition Language (DDL)</h3>
+          <p>Learn how to define database structure using commands like CREATE, ALTER, and DROP.</p>
+        </div>
+        <div class="subtopic1-card">
+          <h3>Data Manipulation Language (DML)</h3>
+          <p>Manipulate data using commands like INSERT, UPDATE, DELETE, and SELECT.</p>
+        </div>
+        <div class="subtopic1-card">
+          <h3>Data Query Language (DQL)</h3>
+          <p>Master the SELECT statement to retrieve data effectively.</p>
+        </div>
+        <div class="subtopic1-card">
+          <h3>Data Control Language (DCL)</h3>
+          <p>Control access to data using GRANT and REVOKE commands.</p>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <ul class="footer__nav">
+        <li class="footer__item">
+          <a class="footer__link" href="./about.html">About</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="index.html">Home</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="#">Terms of Use</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="#">Privacy Policy</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="#">Resources</a>
+        </li>
+        
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="#">Contact Us</a>
+        </li>
+      </ul>
+      <img src="img/BYD footer logo copy.png" alt="Logo" class="footer__logo" />
+      <p class="footer__copyright">
+        &copy; Copyright
+        <a
+          class="footer__link twitter-link"
+          target="_blank"
+          href="https://"
+          >Team BYD</a
+        > <br> 
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
+
+
