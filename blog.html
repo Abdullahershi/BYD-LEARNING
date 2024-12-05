@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="course" lang="en">
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
+
+    <!-- for sbar logo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- for sbar logo -->
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- for sbar logo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- for sbar logo -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="query.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon-byd.ico" />
+    <title>Team TBD | Home</title>
+    <script defer src="script.js"></script>
+  </head>
+
+
+  <body class="mainbod">
+
+    <header class="header">
+      <nav class="nav">
+        <img src="img/BYD logo new copy.png" alt="Team TBD logo" class="nav__logo" id="icon">
+		<img src="team byd _processed.png" alt="Team TBD logo" class="nav__logo__text">
+        <ul class="nav__links">
+          <li class="nav__item">
+            <a class="nav__link" href="./index.html">Home</a>
+          </li>
+          <li class="nav__item">
+          <a class="nav__link" href="./about.html">About</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="./courses.html">Courses</a>
+          </li>
+		  <li class="nav__item">
+            <a class="nav__link" href="./blog.html">Blog</a>
+          </li>
+		  
+          <li class="nav__item">
+            <a class="nav__link nav__link--btn btn--show-modal" href="#"
+              ><strong> Register </strong></a
+            >
+          </li>
+        </ul>
+        <button class="btn-mobile-nav">
+          <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon
+          ><ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+        </button>
+      </nav>
+
+
+      <!-- new code blog -->
+      <article class="ad5-padding-y-lg">
+        <header class="ad5-container ad5-max-width-xs ad5-margin-bottom-lg">
+            <br><br>
+          <div class="ad5-text-component ad5-text-center ad5-line-height-lg ad5-text-gap-md ad5-margin-bottom-md">
+            <h1 class="blogpg">How to create simple Games in HTML, CSS & JavaScript</h1>
+             </div>
+      
+          
+              
+        </header>
+      
+        <figure class="ad5-container ad5-max-width-lg ad5-margin-bottom-lg">
+          <img class="ad5-block ad5-width-100% ad5-radius-lg" src="img/made through HTML AND CSS.png" alt="Image description">
+        </figure>
+      
+        <div class="ad5-container ad5-max-width-adaptive-sm">
+          <div class="ad5-text-component ad5-line-height-lg ad5-text-gap-md">
+            <p class="blogpg">Creating games in HTML, CSS, and JavaScript is an exciting and 
+                accessible way to enter the world of game development. These web 
+                technologies offer a platform-independent approach to building interactive 
+                and visually appealing games that can run in modern web browsers. Here's a brief 
+                introduction to each component:<br><br>
+                
+                <strong>1. (Hypertext Markup Language):</strong> 
+                HTML provides the structure and layout of your game. You use HTML to define the elements on your web page, including the game canvas, buttons, and menus.
+                The < canvas >  element is commonly used for creating 2D games, where you can draw graphics and animations dynamically using JavaScript.
+                <br><br>
+                <strong>2. (Cascading Style Sheets):</strong> 
+                CSS allows you to style and design your game's user interface, making it visually appealing and responsive.
+                You can use CSS for layout, fonts, colors, and animations to create an immersive gaming experience.
+                <br><br>
+                <strong>3. JavaScript:</strong> 
+                JavaScript is the programming language that powers the interactivity and game logic of your project.
+                It enables you to handle user input, update game states, create animations, and implement game mechanics.
+                JavaScript also manages resources such as images, sounds, and data.</p>
+                <br>
+      
+            <h2 class="blogpg">Basic Steps: Let's Get started!</h2>
+      
+            <p class="blogpg"><strong>1. Planning & Design:</strong>
+                Define the game concept, including gameplay, objectives, and rules.
+                Create sketches or wireframes to visualize the game's layout and user interface.
+                Plan the game's structure and how different game elements will interact.
+                <br><br>
+                <strong>2. HTML Structure:</strong> Create the basic HTML structure for your game.
+                Use HTML to define the game canvas or container where the game will be displayed.
+                
+                <br><br>
+                <strong>3. CSS Styling:</strong> Apply CSS styles to make your game visually appealing.
+                Use CSS for layout, colors, fonts, and animations.
+                
+                <br><br>
+                <strong>4. JavaScript Programming:</strong>
+                JavaScript is the heart of your game. Use it to:
+                Handle user input (e.g., keyboard, mouse).
+                Update game state and logic.
+                Render game elements on the canvas.
+                Implement game mechanics, rules, and win/lose conditions.
+                Manage game resources (images, sounds, etc.).
+                Create animations and transitions.
+                Handle collisions and physics if required.
+
+                <br><br>
+                <strong>5. Game Loop:</strong> Implement a game loop to continually update and redraw the game's state.
+                The loop should handle user input, update game logic, and redraw the canvas.<br>
+                <br>function gameLoop() {<br>
+                    // Update game state<br>
+                    updateGame();<br>
+                    <br>
+                    // Clear the canvas<br>
+                    clearCanvas();<br>
+                    <br>
+                    // Draw game elements<br>
+                    drawGame();<br><br>
+                    
+                    // Request next frame <br>
+                    requestAnimationFrame(gameLoop);<br>
+                }<br><br>
+                  
+                  // Start the game loop<br>
+                  gameLoop();<br>
+                  <br><br>
+                  <strong>User Interaction:</strong>
+                  Listen for user input events (e.g., key presses, mouse clicks).
+                  Handle user input to control the game and interact with game objects.
+                  <br><br>
+                  <strong>Testing and Debugging:</strong>
+                  Regularly test your game and debug any issues.
+                  Use browser developer tools and debugging techniques to find and fix errors.
+                  <br><br>
+                  <strong>Optimization:</strong>
+                  Optimize your code for performance, especially if your game is resource-intensive.
+                  Consider using libraries and frameworks designed for game development in JavaScript, like Phaser.js or Three.js.
+                  <br><br>
+                  <strong>Graphics and Multimedia:</strong>
+                  If your game requires graphics or audio, include them as needed.
+                  Use the HTML5 < canvas > element for 2D graphics or WebGL for 3D graphics.
+                  <br><br>
+                  <strong>Publishing:</strong>
+                  Once your game is complete, you can publish it on a website or web hosting platform.
+                  Share it with others and gather feedback for improvement.
+                  Remember that game development can be a complex process, and it's important to start with simple projects and gradually work your way up to more complex games as you become more comfortable with the technologies and concepts involved. 
+                  There are also many online tutorials, forums, and resources available to help you learn and 
+                  grow as a game developer in HTML, CSS, and JavaScript.
+                  <br><br>
+                  <blockquote>Author: Abdullah</blockquote>
+                  
+                  
+
+            </p>
+
+                
+      
+      
+            
+      
+            
+
+      <!-- new code blog end -->
+
+      
+    </footer>
+
+ 
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
